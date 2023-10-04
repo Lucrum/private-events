@@ -3,14 +3,15 @@
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= event.event_type %> - <%= event.location %> - <%= event.time %>
+      <%= link_to "#{event.event_type} - #{event.creator.name}", event %>
     </li>
   <% end %>
 </ul>
 
 
 <% if user_signed_in? %>
-  <%= link_to "Create new event", new_event_path %>
+  <%= link_to "Create new event", new_event_path %> <br>
+  <%= link_to "Your events", users_path %>
   <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 <% else %>
   <%= button_to "Sign In", new_user_session_path %>

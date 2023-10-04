@@ -1,9 +1,11 @@
-<h1><%= current_user.name %>'s Events</h1>
+<h1>Your Events</h1>
 
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= event.event_type %> - <%= event.location %> - <%= event.time %>
+      <%= link_to "#{event.event_type} - #{event.location}", event %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Back to main page", events_path %>

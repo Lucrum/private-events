@@ -20,8 +20,10 @@
   <%= form.text_field :location %><br>
 
   <%= form.label :time %><br>
-  <%= form.datetime_field :time %><br>
+  <%= form.datetime_field :time, min: Date.today, value: DateTime.now.strftime('%Y-%m-%dT12:00:00') %><br>
 
   <%= form.submit %>
 
 <% end %>
+
+<%= link_to "Back to main page", events_path %>

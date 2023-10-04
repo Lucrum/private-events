@@ -4,8 +4,13 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @event = Event.new
+    @event.time = Time.now.strftime('%Y-%m-%dT%H:%M')
     @author_name = current_user.name
   end
 
