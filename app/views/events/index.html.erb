@@ -3,7 +3,7 @@
 <ul>
   <% @events.each do |event| %>
     <li>
-      <%= link_to "#{event.event_type} - #{event.creator.name}", event %>
+      <%= link_to "#{event.name} - #{event.creator.name}", event %>
     </li>
   <% end %>
 </ul>

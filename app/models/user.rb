@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events
-  has_many :attended_events, through: :attendance
+  has_many :attendance
+  has_many :attended_events, through: :attendance, source: :event
 
   validates :name, presence: true
 
