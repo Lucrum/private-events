@@ -1,32 +1,33 @@
-<h1>Create new event</h1>
+<div class="main">
+  <h1>Create new event</h1>
 
-<% if @event.errors.any? %>
-  <ul>
-    <% @event.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-    
+  <% if @event.errors.any? %>
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= form_with model: @event do |form| %>
-  <%= form.label :creator %><br>
-  <%= form.text_field :creator, value: @author_name, disabled: true %><br>
+  <%= form_with model: @event do |form| %>
+    <%= form.label :creator %><br>
+    <%= form.text_field :creator, value: @author_name, disabled: true %><br>
 
-  <%= form.label :name %><br>
-  <%= form.text_field :name %><br>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %><br>
 
-  <%= form.label :event_type %><br>
-  <%= form.text_field :event_type %><br>
+    <%= form.label :event_type %><br>
+    <%= form.text_field :event_type %><br>
 
-  <%= form.label :location %><br>
-  <%= form.text_field :location %><br>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %><br>
 
-  <%= form.label :time %><br>
-  <%= form.datetime_field :time, min: Date.today, value: DateTime.now.strftime('%Y-%m-%dT12:00:00') %><br>
+    <%= form.label :time %><br>
+    <%= form.datetime_field :time, value: DateTime.now.strftime('%Y-%m-%dT12:00:00') %><br>
 
-  <%= form.submit %>
+    <%= form.submit %>
 
-<% end %>
+  <% end %>
 
-<%= link_to "Back to main page", events_path %>
+  <%= link_to "Back to main page", events_path %>
+</div>

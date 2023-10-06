@@ -1,25 +1,41 @@
-<h1>Your Events</h1>
+<div class="main">
+  <h1>Your Events</h1>
 
-<ul>
-  <% @events.each do |event| %>
-    <li>
-      <%= link_to "#{event.name} - #{event.location}", event %>
-    </li>
+  <ul>
+    <% @events.each do |event| %>
+      <li>
+        <%= link_to "#{event.name} - #{event.location}", event %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% future_tickets, past_tickets = @attendances.all.partition { |ticket| ticket.event.time > Date.today } %>
+
+  <% if future_tickets.any? %>
+    <h1>Upcoming Events</h1>
+    <ul>
+      <% future_tickets.each do |ticket| %>
+        <li class="event-info">
+          <%= link_to "#{ticket.event.name} - #{ticket.event.location}", ticket.event %>
+          <%= link_to "Leave Event", attendance_path(ticket), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
 
-<h1>Attending Events</h1>
-
-<ul>
-  <% @attendances.each do |ticket| %>
-    <li>
-      <%= link_to "#{ticket.event.name} - #{ticket.event.location}", ticket.event %>
-      <%= link_to "Leave Event", attendance_path(ticket), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %>
-    </li>
+  <% if past_tickets.any? %>
+    <h1>Past Events</h1>
+    <ul>
+      <% past_tickets.each do |ticket| %>
+        <li>
+          <%= link_to "#{ticket.event.name} - #{ticket.event.location}", ticket.event %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
 
-<%= link_to "Back to main page", events_path %>
+  <%= link_to "Back to main page", events_path %>
+</div>

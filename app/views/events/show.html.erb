@@ -1,5 +1,6 @@
 <div class="main">
-  <h1><%= "#{@event.name} by #{@event.creator.name}" %></h1>
+  <h1><%= @event.name %></h1>
+  <h2><%= @event.creator.name %></h2>
 
   <div class="event-info">
     <h3>What?</h3>
@@ -32,6 +33,6 @@
   </div>
 
   <div>
-    <%= link_to "Back to events", events_path %>
+    <%= link_to "Return", :back %>
   </div>
 </div>
