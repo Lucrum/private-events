@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   resources :events, only: %i[index new create show]
 
-  resources :users, only: [:index]
+  resources :users, only: %i[index]
+
+  resources :attendances, only: %i[index destroy] do
+    post :join
+  end
 end
