@@ -1,48 +1,35 @@
 <div class="main">
-  <h1>All Events</h1>
-  <% if flash[:notice] %>
-    <div><%= flash[:notice] %></div>
-  <% end %>
-
-  <% future_events, past_events = @events.all.partition { |e| e.time > Date.today } %>
-
-  <% if future_events.any? %>
-    <h1>Upcoming Events</h1>
-    <ul>
-      <% future_events.each do |event| %>
-        <li>
-          <%= link_to "#{event.name} - #{event.location}", event %>
-          <% if (user_signed_in? && !event.attendee.include?(current_user)) %>
-            <%= link_to "Join Event", attendance_join_path(event), data: {
-              turbo_method: :post,
-              turbo_confirm: "Are you sure you want to join?"
-            } %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <% if past_events.any? %>
-    <h1>Past Events</h1>
-    <ul>
-      <% past_events.each do |event| %>
-        <li>
-          <%= link_to "#{event.name} - #{event.location}", event %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-
-
-  <% if user_signed_in? %>
-    <%= link_to "Create new event", new_event_path %> <br>
-    <%= link_to "Your events", users_path %>
-    <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= button_to "Sign In", new_user_session_path %>
-  <% end %>
+  <%= render "common_elements/navbar" %>
+  <div class="content">
+    <h1 class="bottom-spacing">All Events</h1>
+    <% if @upcoming_events.any? %>
+      <h2>Upcoming Events</h2>
+      <ul>
+        <% @upcoming_events.each do |event| %>
+          <li class="event-info top-bottom-spacing">
+            <%= link_to "#{event.name} - #{event.location}", event %>
+            <% if (user_signed_in? && !event.attendee.include?(current_user)) %>
+              <%= link_to "Join Event", attendance_join_path(event), data: {
+                turbo_method: :post,
+                turbo_confirm: "Are you sure you want to join?"
+              } %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @past_events.any? %>
+      <h2>Past Events</h2>
+      <ul>
+        <% @past_events.each do |event| %>
+          <li class="event-info top-bottom-spacing">
+            <%= link_to "#{event.name} - #{event.location}", event %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if flash[:notice] %>
+      <div><%= flash[:notice] %></div>
+    <% end %>
+  </div>
 </div>
-
-
-

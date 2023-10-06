@@ -3,17 +3,12 @@ class Event < ApplicationRecord
   has_many :attendance
   has_many :attendee, through: :attendance, source: :user
 
+  scope :past, -> { where('time < ?', Date.today) }
+  scope :upcoming, -> { where('time > ?', Date.today) }
+
   validates :event_type, presence: true
 
   validates :location, presence: true
 
   validates :time, presence: true
-
-  validate :not_in_the_past
-
-  def not_in_the_past
-    return unless DateTime.now > time
-
-    errors.add(:time, "can't take place in the past")
-  end
 end

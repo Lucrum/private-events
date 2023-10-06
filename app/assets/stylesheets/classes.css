@@ -1,0 +1,7 @@
+.top-bottom-spacing {
+  margin: var(--standard-spacing) 0rem;
+}
+
+.bottom-spacing {
+  margin-bottom: var(--standard-spacing);
+}

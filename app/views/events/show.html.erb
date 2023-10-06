@@ -1,38 +1,33 @@
 <div class="main">
-  <h1><%= @event.name %></h1>
-  <h2><%= @event.creator.name %></h2>
-
-  <div class="event-info">
-    <h3>What?</h3>
-    <%= @event.event_type %> <br>
-  </div>
-
-  <div class="event-info">
-    <h3>Where?</h3>
-    <%= @event.location %><br>
-  </div>
-
-  <div class="event-info">
-    <h3>When?</h3>
-    <%= @event.time.strftime("%m/%d/%Y") %><br>
-  </div>
-
-  <div class="event-info">
-    <h3>Who's coming?</h3>
-    <% if @event.attendee.any?%>
-      <ul>
-        <% @event.attendee.each do |attendee| %>
-          <li>
-            <%= attendee.name %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      No one yet...
-    <% end %>
-  </div>
-
-  <div>
-    <%= link_to "Return", :back %>
+  <%= render "common_elements/navbar" %>
+  <div class="content">
+    <h1><%= @event.name %></h1>
+    <h2><%= @event.creator.name %></h2>
+    <div class="event-info">
+      <h3>What?</h3>
+      <%= @event.event_type %> <br>
+    </div>
+    <div class="event-info">
+      <h3>Where?</h3>
+      <%= @event.location %><br>
+    </div>
+    <div class="event-info">
+      <h3>When?</h3>
+      <%= @event.time.strftime("%m/%d/%Y") %><br>
+    </div>
+    <div class="event-info">
+      <h3>Who's coming?</h3>
+      <% if @event.attendee.any?%>
+        <ul>
+          <% @event.attendee.each do |attendee| %>
+            <li>
+              <%= attendee.name %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        No one yet...
+      <% end %>
+    </div>
   </div>
 </div>

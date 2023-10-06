@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
   def index
-    @events = Event.all.eager_load(:creator).eager_load(:attendee)
+    @upcoming_events = Event.upcoming.eager_load(:attendee)
+    @past_events = Event.past
   end
 
   def show

@@ -2,6 +2,12 @@
   background-color: orange;
   font-family: sans-serif;
   --light-color: whitesmoke;
+  --standard-spacing: 1rem;
+  --wide-spacing: 2rem;
+}
+
+a {
+  color: black;
 }
 
 h1, h2, h3 {
@@ -10,6 +16,7 @@ h1, h2, h3 {
 
 ul {
   padding: 0px;
+  margin: 1px 0px;
 }
 
 ul > li {
@@ -24,12 +31,16 @@ body {
 }
 
 div.main {
-  padding: 3rem;
   background-color: var(--light-color);
+  width: 40vw;
+}
+
+div.content {
+  padding: 3rem 3rem;
 }
 
 div.event-info {
-  margin: 2rem 2rem;
+  margin: 2rem 0rem;
 }
 
 ul > li.event-info {
