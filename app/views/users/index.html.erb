@@ -8,4 +8,18 @@
   <% end %>
 </ul>
 
+<h1>Attending Events</h1>
+
+<ul>
+  <% @attendances.each do |ticket| %>
+    <li>
+      <%= link_to "#{ticket.event.name} - #{ticket.event.location}", ticket.event %>
+      <%= link_to "Leave Event", attendance_path(ticket), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+    </li>
+  <% end %>
+</ul>
+
 <%= link_to "Back to main page", events_path %>

@@ -1,0 +1,8 @@
+div.login {
+  background-color: var(--light-color);
+  padding: 3rem 3rem;
+}
+
+div.login > h2 {
+  margin-top: 0rem;
+}

@@ -1,0 +1,9 @@
+<h1>Attendances</h1>
+
+<ul>
+  <% @attendances.each do |attendance| %>
+    <li>
+      <%= "#{attendance.event.name} - #{attendance.event.event_type}" %>
+    </li>
+  <% end %>
+</ul>

@@ -1,31 +1,37 @@
-<h1><%= "#{@event.name} by #{@event.creator.name}" %></h1>
+<div class="main">
+  <h1><%= "#{@event.name} by #{@event.creator.name}" %></h1>
 
-<div>
-  What? <br>
-  <%= @event.event_type %> <br>
-</div>
+  <div class="event-info">
+    <h3>What?</h3>
+    <%= @event.event_type %> <br>
+  </div>
 
-<div>
-  Where? <br>
-  <%= @event.location %><br>
-</div>
+  <div class="event-info">
+    <h3>Where?</h3>
+    <%= @event.location %><br>
+  </div>
 
-<div>
-  When? <br>
-  <%= @event.time.strftime("%m/%d/%Y") %><br>
-</div>
+  <div class="event-info">
+    <h3>When?</h3>
+    <%= @event.time.strftime("%m/%d/%Y") %><br>
+  </div>
 
-<div>
-  Who's coming? <br>
-  <ul>
-    <% @event.attendees.each do |attendee| %>
-      <li>
-        <%= attendee.name %>
-      </li>
+  <div class="event-info">
+    <h3>Who's coming?</h3>
+    <% if @event.attendee.any?%>
+      <ul>
+        <% @event.attendee.each do |attendee| %>
+          <li>
+            <%= attendee.name %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      No one yet...
     <% end %>
-  </ul>
-</div>
+  </div>
 
-<div>
-  <%= link_to "Back to events", events_path %>
+  <div>
+    <%= link_to "Back to events", events_path %>
+  </div>
 </div>
