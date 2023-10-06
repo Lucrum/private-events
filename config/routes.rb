@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index]
 
-  resources :attendances, only: %i[index destroy] do
+  resources :attendances, only: %i[destroy] do
     post :join
   end
 end
