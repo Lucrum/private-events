@@ -6,7 +6,9 @@ A Rails based event management site, allowing users to create events and manage 
 
 # usage
 
-To run, navigate into the folder and run `bin/rails s`.
+Navigate into the folder and run `bundle install` to install necessary gems.
+
+To start the server, run `bin/rails s`.
 
 Guests may view a list of all upcoming and past events, as well as sign up for an account.
 
